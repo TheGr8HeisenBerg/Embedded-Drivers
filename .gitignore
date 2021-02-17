@@ -1,11 +1,12 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/c,eclipse,windows
-# Edit at https://www.toptal.com/developers/gitignore?templates=c,eclipse,windows
+# Created by https://www.toptal.com/developers/gitignore/api/c,eclipse,c++,cmake,windows
+# Edit at https://www.toptal.com/developers/gitignore?templates=c,eclipse,c++,cmake,windows
 
 ### C ###
 # Prerequisites
 *.d
-
+*.mk
+*.project
 # Object files
 *.o
 *.ko
@@ -55,6 +56,47 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+### C++ ###
+# Prerequisites
+
+# Compiled Object files
+*.slo
+
+# Precompiled Headers
+
+# Linker files
+
+# Debugger Files
+
+# Compiled Dynamic libraries
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+
+# Executables
+
+### CMake ###
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+CMakeUserPresets.json
+
+### CMake Patch ###
+# External projects
+*-prefix/
 
 ### Eclipse ###
 .metadata
@@ -148,4 +190,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/c,eclipse,windows
+# End of https://www.toptal.com/developers/gitignore/api/c,eclipse,c++,cmake,windows
