@@ -43,4 +43,5 @@ void LCD_displayChracter(const uint8);
 void LCD_displayString(const sint8 *);
 void LCD_goToRowColumn(uint8, uint8);
 void LCD_displayStringRowColumn(const sint8 *, uint8, uint8);
+void LCD_integerToString(sint32 data);
 #endif /* LCD_H_ */

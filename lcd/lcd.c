@@ -100,6 +100,49 @@ void LCD_displayStringRowColumn(const sint8 * stringToDisplay, uint8 a_row, uint
 	LCD_displayString(stringToDisplay);
 }
 
+void LCD_integerToString(sint32 numberToDisplay){
+	char buffer[12];
+	/*************************************************************************************
+	 * Why 12?																			 *
+	 * largest number of 32 bit number is 4,294,967,296	                                 *
+	 * meaning there are 10 digits in that number and if there is a negative sign (-)    *
+	 * that would be a total of 11 and for the null terminator (\0)                      *
+	 * that is a total of 12 															 *
+	 *************************************************************************************/
+	uint8 i = 0, j = 0;
+	uint8 isNegative = 0;
+	if(numberToDisplay == 0){
+		buffer[0] = '0';
+		buffer[1] = '\0';
+		return LCD_displayString(buffer);
+	}
+	while(numberToDisplay != 0){
+		/*Negative number check*/
+		if(numberToDisplay < 0){
+			/*it's a negative number so add the sign*/
+			isNegative = 1;
+			buffer[i++] = '-';
+			numberToDisplay = 0 - numberToDisplay; /*making it a positive number*/
+		}
+		buffer[i++] = (numberToDisplay % 10) + '0';
+		numberToDisplay /= 10;
+	}
+	buffer[i--] = '\0';
+
+	/*Now we have the number but it's reversed*/
+	for(j = 0; j < i; j++){
+		if(isNegative){
+			isNegative = 0;
+			j++;
+		}
+		buffer[j] = buffer[j] ^ buffer[i];
+		buffer[i] = buffer[j] ^ buffer[i];
+		buffer[j] = buffer[j] ^ buffer[i];
+		i--;
+	}
+	LCD_displayString(buffer);
+}
+
 static void LCD_commandEnable(void){
 	CLEAR_BIT(LCD_control_port_out, RS);
 	CLEAR_BIT(LCD_control_port_out, RW);
